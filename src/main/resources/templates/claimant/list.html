@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="layouts/default">
+<body>
+	<main layout:fragment="content">
+		<div class="container">
+			<h1>Solicitantes</h1>
+			<table class="highlight">
+				<thead>
+					<tr>
+						<th th:text="#{claimant.id}" />
+						<th th:text="#{claimant.nombres}" />
+						<th th:text="#{claimant.apellidos}" />
+						<th th:text="#{claimant.direccion}" />
+						<th th:text="#{claimant.telefono}" />
+						<th th:text="#{claimant.email}" />
+						<th th:text="#{claimant.doc}" />
+						<th th:text="#{claimant.nro}" />
+						<th th:text="#{claimant.acciones}" />
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="claimant : ${claimantList}" th:object="${claimant}">
+						<td th:text="*{id}" />
+						<td th:text="*{nombres}" />
+						<td th:text="*{apellidos}" />
+						<td th:text="*{direccion} " />
+						<td th:text="*{telefono}" />
+						<td th:text="*{email}" />
+						<td th:text="*{doc}" />
+						<td th:text="*{nroDoc}" />
+						<td th:with="id=*{id}">
+							<a th:href="@{/claimants/__${id}__}"> <i class="material-icons" th:text="#{icons.editar}" />
+							</a>
+							<a th:href="@{/claimants/delete/__${id}__}"> <i class="material-icons" th:text="#{icons.borrar}" />
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</main>
+</body>
+</html>

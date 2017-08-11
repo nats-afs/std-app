@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.thymeleaf.org"
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/default">
+<body>
+   <main layout:fragment="content">
+   <div class="container">
+      <h1 th:text="${status==true? 'Registrar Solicitante':'Editar Solicitante'}">Registrar
+         Solicitante</h1>
+      <div class="row">
+         <form method="post"
+            th:action="${status==true}? @{/claimants/form} : @{/claimants/__${claimant.id}__}"
+            th:object="${claimant}" class="col s12">
+            <div class="row">
+               <div class="input-field col s12">
+                  <input th:field="*{nombres}" type="text" class="validate" />
+                  <label th:text="#{claimant.nombres}" />
+               </div>
+            </div>
+            <div class="row">
+               <div class="input-field col s12">
+                  <input th:field="*{apellidos}" type="text" class="validate" />
+                  <label th:text="#{claimant.apellidos}" />
+               </div>
+            </div>
+            <div class="row">
+               <div class="input-field col s12">
+                  <input th:field="*{direccion}" type="tel" class="validate" />
+                  <label th:text="#{claimant.direccion}" />
+               </div>
+            </div>
+            <div class="row">
+               <div class="input-field col s12">
+                  <input th:field="*{telefono}" type="tel" class="validate" />
+                  <label th:text="#{claimant.telefono}" />
+               </div>
+            </div>
+            <div class="row">
+               <div class="input-field col s12">
+                  <input th:field="*{email}" type="tel" class="validate" />
+                  <label th:text="#{claimant.email}" />
+               </div>
+            </div>
+            <div class="row">
+               <div class="input-field col s12">
+                  <select id="doc" name="doc" th:with="doc=*{doc}">
+                     <option value="" th:disabled="disabled" selected="true"
+                        th:text="${status==true}? 'Seleccione tipo de documento' : ${doc}">Seleccione
+                        tipo de documento</option>
+                     <option th:each="tipoDoc : ${tipoDocs}" th:text="${tipoDoc}"
+                        th:value="${tipoDoc}" />
+                  </select>
+                  <label>Documento</label>
+               </div>
+            </div>
+            <div class="row">
+               <div class="input-field col s12">
+                  <input th:field="*{nroDoc}" type="text" class="validate" />
+                  <label th:text="#{claimant.nro}" />
+               </div>
+            </div>
+            <div class="row">
+               <div class="input-field col s6">
+                  <button class="btn waves-effect waves-light" type="submit" name="action">
+                     Guardar<i class="material-icons right" th:text="#{icons.guardar}" />
+                  </button>
+               </div>
+               <div class="input-field col s6">
+                  <button class="btn waves-effect waves-light" type="reset" name="action">
+                     Limpiar<i class="material-icons right" th:text="#{icons.limpiar}" />
+                  </button>
+               </div>
+            </div>
+         </form>
+      </div>
+   </div>
+   </main>
+</body>
+</html>
