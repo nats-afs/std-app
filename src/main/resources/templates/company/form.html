@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/default">
+
+<body>
+	<section layout:fragment="section-content">
+		<div class="container">
+			<h3 th:text="${status==true? '__#{company.form.create}__' : '__#{company.form.update}__'}">Registrar Compañia
+			</h3>
+			<div class="row">
+				<form method="post" th:action="${status==true}? @{/company/form} : @{/company/__${company.id}__}" th:object="${company}" class="col s12">
+					<div class="row">
+						<div class="input-field col s12">
+							<input th:field="*{nombre}" type="text" class="validate" />
+							<label th:text="#{company.nombre}" />
+							<span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="error-class" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<input th:field="*{abrev}" type="text" class="validate" />
+							<label th:text="#{company.abrev}" />
+							<span th:if="${#fields.hasErrors('abrev')}" th:errors="*{abrev}" class="error-class" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<input th:field="*{slogan}" type="text" class="validate" />
+							<label th:text="#{company.slogan}" />
+							<span th:if="${#fields.hasErrors('slogan')}" th:errors="*{slogan}" class="error-class" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s6">
+							<button class="btn waves-effect waves-light" type="submit" name="action">Guardar<i class="material-icons right" th:text="#{icons.guardar}" /></button>
+						</div>
+						<div class="input-field col s6">
+							<button class="btn waves-effect waves-light" type="reset" name="action">Limpiar<i class="material-icons right" th:text="#{icons.limpiar}" /></button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

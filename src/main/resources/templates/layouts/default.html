@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/base">
-<body layout:fragment="body-content">
-	<header th:replace="fragments/header :: header"></header>
-	<main layout:fragment="content"></main>
-	<footer th:replace="fragments/footer :: footer"></footer>
+<head>
+	<title>Default Template</title>
+</head>
+<body>
+	<header layout:fragment="header-content" th:replace="fragments/header :: header" />
+	<main id="main-content" layout:fragment="main-content">
+		<aside layout:fragment="aside-content" th:replace="fragments/aside :: aside" />
+		<section layout:fragment="section-content" />
+	</main>
+	<footer layout:fragment="footer-content" th:replace="fragments/footer :: footer" />
 </body>
 </html>

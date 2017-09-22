@@ -164,6 +164,7 @@ $dropdown-bg-color: $nats-app-bar !default;
 $dropdown-hover-bg-color: lighten($dropdown-bg-color,15%) !default;
 $dropdown-color: $nats-text-color !default;
 $dropdown-item-height: 50px !default;
+$dropdown-font-size: 0.9rem;
 
 
 // 9. Fonts
@@ -266,9 +267,11 @@ $navbar-brand-font-size: 2.1rem !default;
 
 $sidenav-font-size: 14px !default;
 $sidenav-font-color: rgba(0,0,0,.87) !default;
+$sidenav-font-weight: 400;
 $sidenav-bg-color: #fff !default;
-$sidenav-padding: 16px !default;
+$sidenav-padding: 15px !default;
 $sidenav-item-height: 48px !default;
+$sidenav-width: 260px !default;
 $sidenav-line-height: $sidenav-item-height !default;
 
 

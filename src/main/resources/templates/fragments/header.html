@@ -1,23 +1,47 @@
 <header th:fragment="header">
 	<div class="navbar-fixed">
 		<nav class="" role="navigation">
-			<div class="">
-				<div class="nav-wrapper">
-					<a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i
-					               class="material-icons">menu</i></a>
-					<a href="#" class="brand-logo">STD App</a>
-					<ul class="right hide-on-med-and-down">
-						<li><a class="dropdown-button" href="#" data-activates="dropdown1" data-beloworigin="true">Nats<i
-					                     class="material-icons right">arrow_drop_down</i></a></li>
-						<ul id='dropdown1' class='dropdown-content'>
-							<li><a href="#!" class="">First</a></li>
-							<li><a href="#!" class="">Second</a></li>
-							<li><a href="#!" class="">Third</a></li>
-							<li><a href="#!" class="">Fourth</a></li>
-						</ul>
+			<!-- 			<div class=""> -->
+			<div class="nav-wrapper">
+
+				<ul class="left">
+					<li>
+						<a href="#" data-activates="slide-out" class="no-hover sidebar-collapse btn-medium hide-on-large-only"><i class="material-icons">menu</i></a>
+					</li>
+					<li>
+						<div class="logo-wrapper">
+							<a href="index.html" class="no-hover brand-logo">STD App</a>
+						</div>
+					</li>
+				</ul>
+				<ul class="right hide-on-med-and-down">
+					<li><a href="javascript:void(0);" class="toggle-fullscreen"><i class="material-icons">settings_overscan</i></a>
+					</li>
+					<li><a href="javascript:void(0);" class=""><i class="material-icons">apps</i></a>
+					</li>
+					<li><a href="javascript:void(0);" class=""><i class="material-icons">notifications</i></a>
+					</li>
+					<li><a href="#" data-activates="chat-out" class="chat-collapse"><i class="material-icons">message</i></a>
+					</li>
+					<li>
+						<a class="dropdown-button" href="#" data-activates="profile-dropdown" data-beloworigin="true">John Doe<i class="material-icons right">arrow_drop_down</i></a>
+					</li>
+					<ul id="profile-dropdown" class="dropdown-content">
+						<li><a href="#"><i class="material-icons">face</i> Profile</a>
+						</li>
+						<li><a href="#"><i class="material-icons">settings</i> Settings</a>
+						</li>
+						<li><a href="#"><i class="material-icons">help</i> Help</a>
+						</li>
+						<li class="divider"></li>
+						<li><a href="#"><i class="material-icons">lock</i> Lock</a>
+						</li>
+						<li><a href="#"><i class="material-icons">keyboard_tab</i> Logout</a>
+						</li>
 					</ul>
-				</div>
+				</ul>
 			</div>
+			<!-- 			</div> -->
 		</nav>
 	</div>
 </header>

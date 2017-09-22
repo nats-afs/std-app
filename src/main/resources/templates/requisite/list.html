@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="layouts/default">
+<body>
+	<section layout:fragment="section-content">
+		<div class="container">
+			<h3 th:test="#{requisite.list}">Requisitos</h3>
+			<table class="responsive-table highlight">
+				<thead>
+					<tr>
+						<th th:text="#{requisite.id}" />
+						<th th:text="#{requisite.nombre}" />
+						<th th:text="#{requisite.descripcion}" />
+						<th th:text="#{requisite.acciones}" />
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="requisite : ${requisiteList}" th:object="${requisite}">
+						<td th:text="*{id}" />
+						<td th:text="*{nombre}" />
+						<td th:text="*{descripcion}" />
+						<td th:with="id=*{id}">
+							<a th:href="@{/requisites/__${id}__}"> <i class="material-icons" th:text="#{icons.editar}" />
+							</a>
+							<a th:href="@{/requisites/delete/__${id}__}"> <i class="material-icons" th:text="#{icons.borrar}" />
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</section>
+</body>
+</html>

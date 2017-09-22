@@ -2,21 +2,24 @@ package com.afs.nats.stdapp.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.afs.nats.stdapp.model.Claimant;
 import com.afs.nats.stdapp.model.TipoDocumento;
 import com.afs.nats.stdapp.repository.ClaimantRepository;
 
 @Controller
-@RequestMapping(value = "/claimants")
+@RequestMapping("/claimants")
 public class ClaimantController {
 
 	Logger log = LoggerFactory.getLogger(this.getClass());
@@ -28,8 +31,14 @@ public class ClaimantController {
 	}
 
 	// create a claimant
-	@RequestMapping(value = "/form", method = RequestMethod.POST)
-	private String createClaimant(Claimant claimant) {
+	@PostMapping("/form")
+	private String createClaimant(@Valid Claimant claimant, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			model.addAttribute("status", true);
+			model.addAttribute("tipoDocs", TipoDocumento.getValues());
+			model.addAttribute("claimant", claimant);
+			return "claimant/form";
+		}
 		log.info("Create a claimant");
 		claimantRepository.save(claimant);
 		log.info(String.format("Claimant added: %s ", claimant.toString()));
@@ -37,7 +46,7 @@ public class ClaimantController {
 	}
 
 	// delete a claimant
-	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+	@GetMapping("/delete/{id}")
 	private String deleteClaimant(@PathVariable long id) {
 		log.info(String.format("Delete claimant with id = %d", id));
 		claimantRepository.delete(id);
@@ -45,7 +54,7 @@ public class ClaimantController {
 	}
 
 	// edit a claimant
-	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
+	@PostMapping("/{id}")
 	private String editClaimant(@PathVariable long id, Claimant claimant) {
 		log.info(String.format("Edit claimant with id = %d", claimant.getId()));
 		claimantRepository.save(claimant);
@@ -53,7 +62,7 @@ public class ClaimantController {
 	}
 
 	// list of claimants
-	@RequestMapping(method = RequestMethod.GET)
+	@GetMapping
 	private String showClaimants(Model model) {
 		log.info("List of claimants");
 		List<Claimant> claimants = claimantRepository.findAll();
@@ -63,7 +72,7 @@ public class ClaimantController {
 	}
 
 	// show form
-	@RequestMapping(value = "/form", method = RequestMethod.GET)
+	@GetMapping("/form")
 	private String showForm(Model model) {
 		model.addAttribute("claimant", new Claimant());
 		model.addAttribute("status", true);
@@ -73,7 +82,7 @@ public class ClaimantController {
 	}
 
 	// view a claimant
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@GetMapping("/{id}")
 	private String viewClaimant(@PathVariable long id, Model model) {
 		log.info(String.format("View claimant with id = %d", id));
 		model.addAttribute("claimant", claimantRepository.findOne(id));
