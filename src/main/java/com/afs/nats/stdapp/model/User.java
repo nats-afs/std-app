@@ -18,6 +18,7 @@ import javax.persistence.ManyToMany;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -32,16 +33,18 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	@NotEmpty(message="Nombre de usuario requerido")
+	@NotEmpty(message = "Nombre de usuario requerido")
 	private @NonNull String username;
-	@NotEmpty(message="Password requerido")
+	@NotEmpty(message = "Password requerido")
 	private @NonNull String password;
-//	private @NonNull String password;
-//	private @NonNull Boolean active;
-//	@ManyToMany(cascade = CascadeType.ALL)
-//	@JoinTable(name = "user_role",
-//		joinColumns = @JoinColumn(name = "userId"),
-//		inverseJoinColumns = @JoinColumn(name = "roleId")
-//	)
-//	private @NonNull Set<User> users = new HashSet<User>();
+	@NotEmpty(message = "Rol requerido")
+	private @NonNull String role;
+	// private @NonNull String password;
+	// private @NonNull Boolean active;
+	// @ManyToMany(cascade = CascadeType.ALL)
+	// @JoinTable(name = "user_role",
+	// joinColumns = @JoinColumn(name = "userId"),
+	// inverseJoinColumns = @JoinColumn(name = "roleId")
+	// )
+	// private @NonNull Set<User> users = new HashSet<User>();
 }

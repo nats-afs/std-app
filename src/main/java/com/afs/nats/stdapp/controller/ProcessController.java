@@ -14,11 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.afs.nats.stdapp.model.Process;
 import com.afs.nats.stdapp.model.TipoDocumento;
-import com.afs.nats.stdapp.repository.ProcessRepository;
 import com.afs.nats.stdapp.repository.ProcessRepository;
 
 @Controller

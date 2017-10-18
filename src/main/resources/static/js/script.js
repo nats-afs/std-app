@@ -8,6 +8,16 @@ $(document).ready(function () {
 //	}else{
 //		$('.button-collapse').sideNav('hide');
 //	}
-	
 	 $('select').material_select();
+
+	 var opt = $('.input-field option:disabled');
+	 if (opt.length) {
+
+	 	var field = opt.parents('.select-wrapper');
+	 	opt.reverse();
+	 	field.each(function(index,value){
+	 		$(this).children('input.select-dropdown').prop('value',opt[index].text);
+	 	});
+	 }
+
 });

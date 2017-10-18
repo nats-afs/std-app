@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/default">
+
+<body>
+	<section layout:fragment="section-content">
+		<div class="container">
+			<h3 th:text="${status==true? '__#{tupa.form.create}__' : '__#{tupa.form.update}__'}">Registrar Compañia
+			</h3>
+			<div class="row">
+				<form method="post" th:action="${status==true}? @{/tupa/form} : @{/tupa/__${tupa.id}__}" th:object="${tupa}" class="col s12">
+					<div class="row">
+						<div class="input-field col s12">
+							<input th:field="*{anio}" type="number" class="validate" />
+							<label th:text="#{tupa.anio}" />
+							<span th:if="${#fields.hasErrors('anio')}" th:errors="*{anio}" class="error-class" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<input th:field="*{nombre}" type="text" class="validate" />
+							<label th:text="#{tupa.nombre}" />
+							<span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="error-class" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<input th:field="*{resolucion}" type="text" class="validate" />
+							<label th:text="#{tupa.resolucion}" />
+							<span th:if="${#fields.hasErrors('resolucion')}" th:errors="*{resolucion}" class="error-class" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s6">
+							<button class="btn waves-effect waves-light" type="submit" name="action">Guardar<i class="material-icons right" th:text="#{icons.guardar}" /></button>
+						</div>
+						<div class="input-field col s6">
+							<button class="btn waves-effect waves-light" type="reset" name="action">Limpiar<i class="material-icons right" th:text="#{icons.limpiar}" /></button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

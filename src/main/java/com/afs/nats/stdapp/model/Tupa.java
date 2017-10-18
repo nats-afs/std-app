@@ -8,9 +8,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,10 +29,13 @@ public class Tupa {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@NotNull(message="Indique año")
 	private Integer anio;
+	@NotEmpty(message ="Indique nombre")
 	private @NonNull String nombre;
+	@NotEmpty(message ="Indique resolución")
 	private @NonNull String resolucion;
-	@OneToMany(mappedBy="tupa")
-	@Cascade(CascadeType.ALL)
-	private Set<Process> procedures = new HashSet<Process>();
+//	@OneToMany(mappedBy="tupa")
+//	@Cascade(CascadeType.ALL)
+//	private Set<Process> procedures = new HashSet<Process>();
 }

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="layouts/default">
+<body>
+	<section layout:fragment="section-content">
+		<div class="container">
+			<h3 th:text="#{work.list}">Compañia</h3>
+			<table class="responsive-table highlight">
+				<thead>
+					<tr>
+						<th th:text="#{work.id}" />
+						<th th:text="#{work.company}" />
+						<th th:text="#{work.tupa}" />
+						<th th:text="#{work.uit}" />
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="work : ${workList}" th:object="${work}">
+						<td th:text="*{id}" />
+						<td th:text="*{company.nombre}" />
+						<td th:text="*{tupa.nombre}" />
+						<td th:text="*{uit} " />
+						<td th:with="id=*{id}">
+							<a th:href="@{/work/__${id}__}"> <i class="material-icons" th:text="#{icons.editar}" />
+							</a>
+							<a th:href="@{/work/delete/__${id}__}"> <i class="material-icons" th:text="#{icons.borrar}" />
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</section>
+</body>
+</html>

@@ -55,8 +55,14 @@ public class ClaimantController {
 
 	// edit a claimant
 	@PostMapping("/{id}")
-	private String editClaimant(@PathVariable long id, Claimant claimant) {
+	private String editClaimant(@PathVariable long id, @Valid Claimant claimant, BindingResult result, Model model) {
 		log.info(String.format("Edit claimant with id = %d", claimant.getId()));
+		if (result.hasErrors()) {
+			model.addAttribute("status", false);
+			model.addAttribute("tipoDocs", TipoDocumento.getValues());
+			model.addAttribute("claimant", claimant);
+			return "claimant/form";
+		}
 		claimantRepository.save(claimant);
 		return "redirect:/claimants";
 	}

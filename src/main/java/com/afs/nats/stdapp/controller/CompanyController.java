@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.afs.nats.stdapp.model.Company;
 import com.afs.nats.stdapp.repository.CompanyRepository;
 
@@ -53,8 +54,13 @@ public class CompanyController {
 
 	// edit a company
 	@PostMapping("/{id}")
-	private String editCompany(@PathVariable long id, Company company) {
+	private String editCompany(@PathVariable Long id, @Valid Company company, BindingResult result, Model model) {	
 		log.info(String.format("Edit company with id = %d", company.getId()));
+		if (result.hasErrors()) {
+			model.addAttribute("status", false);
+			model.addAttribute("company", company);
+			return "company/form";
+		}
 		companyRepository.save(company);
 		return "redirect:/company";
 	}

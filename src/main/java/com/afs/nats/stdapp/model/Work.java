@@ -7,6 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -24,11 +27,12 @@ public class Work {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	@OneToOne
-	@NotBlank(message="Indique compañia")
+	@NotNull(message = "Indique compañia")
 	private @NonNull Company company;
 	@OneToOne
-	@NotBlank(message="Indique TUPA")
+	@NotNull(message = "Indique TUPA")
 	private @NonNull Tupa tupa;
-	@NotBlank(message = "Ingrese valor de UIT para el año")
+	@Digits(integer = 8, fraction = 2, message = "Numero fuera de estimacion")
+	@DecimalMin(value = "0.00", inclusive = false, message = "Indique valor de UIT")
 	private @NonNull BigDecimal uit;
 }

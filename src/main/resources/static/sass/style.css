@@ -1,0 +1,41 @@
+#main-content,
+footer {
+  padding-left: 240px;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.error-class {
+  color: #e57373;
+  font-size: 8pt;
+}
+
+.success-class {
+  color: #40d27b;
+  font-size: 8pt;
+}
+
+.logo-wrapper {
+  margin: 0 15px;
+}
+
+#left-sidebar-nav ul.side-nav {
+  top: 64px;
+}
+
+@media only screen and (max-width: 992px) {
+  #main-content, footer {
+    padding-left: 0;
+  }
+}
+ 
+
+ /*# sourceMappingURL= style.css.map */
