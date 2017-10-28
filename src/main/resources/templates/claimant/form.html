@@ -3,67 +3,77 @@
 
 <body>
 	<section layout:fragment="section-content">
-		<div class="container">
-			<h1 th:text="${status==true? 'Registrar Solicitante':'Editar Solicitante'}">Registrar
-				Solicitante</h1>
-			<div class="row">
-				<form method="post" th:action="${status==true}? @{/claimants/form} : @{/claimants/__${claimant.id}__}" th:object="${claimant}" class="col s12">
-					<div class="row">
-						<div class="input-field col s12">
-							<input th:field="*{nombres}" type="text" class="validate" /> <label th:text="#{claimant.nombres}" /> <span th:if="${#fields.hasErrors('nombres')}" th:errors="*{nombres}" class="error-class" />
+		<div class="row">
+			<div class="col s12">
+				<div class="card-panel">
+					<div class="container">
+						<h4 th:text="${status? '__#{claimant.form.create}__':'__#{claimant.form.update}__'}" />
+						<div class="row">
+							<form method="post" th:action="${status==true}? @{/claimants/form} : @{/claimants/__${claimant.id}__}" th:object="${claimant}" class="col s12">
+								<div class="row">
+									<div class="input-field col s12">
+										<input th:field="*{nombres}" type="text" class="validate" />
+										<label th:text="#{claimant.nombres}" /> <span th:if="${#fields.hasErrors('nombres')}" th:errors="*{nombres}" class="error-class" />
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s12">
+										<input th:field="*{apellidos}" type="text" class="validate" />
+										<label th:text="#{claimant.apellidos}" /> <span th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}" class="error-class" />
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s12">
+										<input th:field="*{direccion}" type="text" class="validate" />
+										<label th:text="#{claimant.direccion}" /> <span th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}" class="error-class" />
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s12">
+										<input th:field="*{telefono}" type="tel" class="validate" />
+										<label th:text="#{claimant.telefono}" /> <span th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}" class="error-class" />
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s12">
+										<input th:field="*{email}" type="email" class="validate" />
+										<label th:text="#{claimant.email}" /> <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error-class" />
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s12">
+										<select th:field="*{doc}">
+											<option value="" th:if="${status}" th:disabled="${status}" th:selected="${status}" th:text="#{claimant.form.select.doc}" />
+											<option th:each="tipoDoc : ${tipoDocs}" th:text="${tipoDoc}" th:value="${tipoDoc}" />
+										</select>
+										<label>Documento</label><span th:if="${#fields.hasErrors('doc')}" th:errors="*{doc}" class="error-class" />
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s12">
+										<input th:field="*{nroDoc}" type="text" class="validate" />
+										<label th:text="#{claimant.nro}" /> <span th:if="${#fields.hasErrors('nroDoc')}" th:errors="*{nroDoc}" class="error-class" />
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s6">
+										<button class="btn waves-effect waves-light" type="submit" name="action">
+											Guardar<i class="material-icons right" th:text="#{icons.guardar}" />
+										</button>
+									</div>
+									<div class="input-field col s6">
+										<button class="btn waves-effect waves-light" type="reset" name="action">
+											Limpiar<i class="material-icons right" th:text="#{icons.limpiar}" />
+										</button>
+									</div>
+								</div>
+							</form>
 						</div>
 					</div>
-					<div class="row">
-						<div class="input-field col s12">
-							<input th:field="*{apellidos}" type="text" class="validate" /> <label th:text="#{claimant.apellidos}" /> <span th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}" class="error-class" />
-						</div>
-					</div>
-					<div class="row">
-						<div class="input-field col s12">
-							<input th:field="*{direccion}" type="text" class="validate" /> <label th:text="#{claimant.direccion}" /> <span th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}" class="error-class" />
-						</div>
-					</div>
-					<div class="row">
-						<div class="input-field col s12">
-							<input th:field="*{telefono}" type="tel" class="validate" /> <label th:text="#{claimant.telefono}" /> <span th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}" class="error-class" />
-						</div>
-					</div>
-					<div class="row">
-						<div class="input-field col s12">
-							<input th:field="*{email}" type="email" class="validate" /> <label th:text="#{claimant.email}" /> <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error-class" />
-						</div>
-					</div>
-					<div class="row">
-						<div class="input-field col s12">
-							<select th:field="*{doc}">
-                <option value="" th:if="${status}" th:disabled="${status}" th:selected="${status}" 
-                    th:text="#{claimant.form.select.doc}"/>
-                <option th:each="tipoDoc : ${tipoDocs}" th:text="${tipoDoc}" th:value="${tipoDoc}" />
-              </select><label>Documento</label><span th:if="${#fields.hasErrors('doc')}" th:errors="*{doc}" class="error-class" />
-							</div>
-						</div>
-					<div class="row">
-						<div class="input-field col s12">
-							<input th:field="*{nroDoc}" type="text" class="validate" /> <label th:text="#{claimant.nro}" /> <span th:if="${#fields.hasErrors('nroDoc')}" th:errors="*{nroDoc}" class="error-class" />
-						</div>
-					</div>
-					<div class="row">
-						<div class="input-field col s6">
-							<button class="btn waves-effect waves-light" type="submit" name="action">
-								Guardar<i class="material-icons right"
-									th:text="#{icons.guardar}" />
-							</button>
-						</div>
-						<div class="input-field col s6">
-							<button class="btn waves-effect waves-light" type="reset" name="action">
-								Limpiar<i class="material-icons right"
-									th:text="#{icons.limpiar}" />
-							</button>
-						</div>
-					</div>
-				</form>
+				</div>
 			</div>
 		</div>
 	</section>
 </body>
+
 </html>

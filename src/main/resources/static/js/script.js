@@ -20,4 +20,5 @@ $(document).ready(function () {
 	 	});
 	 }
 
+	 $('#left-sidebar-nav #slide-out').perfectScrollbar();
 });

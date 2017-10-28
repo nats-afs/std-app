@@ -1,12 +1,17 @@
 package com.afs.nats.stdapp.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +19,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import com.afs.nats.stdapp.model.Claimant;
 import com.afs.nats.stdapp.model.TipoDocumento;
 import com.afs.nats.stdapp.repository.ClaimantRepository;
@@ -68,12 +75,30 @@ public class ClaimantController {
 	}
 
 	// list of claimants
+	// @GetMapping
+	// private String showClaimants(Model model) {
+	// log.info("List of claimants");
+	// List<Claimant> claimants = claimantRepository.findAll();
+	// model.addAttribute("claimantList", claimants);
+	// log.info(String.format("Total of claimants %d", claimants.size()));
+	// return "claimant/list";
+	// }
+
 	@GetMapping
-	private String showClaimants(Model model) {
+	private String showClaimantsByPage(Model model, Pageable pageable) {
 		log.info("List of claimants");
-		List<Claimant> claimants = claimantRepository.findAll();
-		model.addAttribute("claimantList", claimants);
-		log.info(String.format("Total of claimants %d", claimants.size()));
+//		Page<Claimant> claimants ;
+//		
+//		if (pageable.isPresent()) {
+//			claimants = claimantRepository.findAll(pageable.get());
+//		}else {
+//			claimants = claimantRepository.findAll(new PageRequest(0, 10));
+//		}
+//		
+		Page<Claimant> claimants = claimantRepository.findAll(!(pageable == null)? pageable: new PageRequest(0, 10));
+		model.addAttribute("pages", claimants.getTotalPages());
+		model.addAttribute("claimantList", claimants.getContent());
+		log.info(String.format("Total of claimants by page %d", claimants.getContent().size()));
 		return "claimant/list";
 	}
 

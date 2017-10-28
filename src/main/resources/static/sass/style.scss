@@ -18,7 +18,8 @@ main {
 	color: #e57373;
 	font-size: 8pt;
 }
-.success-class{
+
+.success-class {
 	color: #40d27b;
 	font-size: 8pt;
 }
@@ -27,13 +28,21 @@ main {
 	margin: 0 15px;
 }
 
-#left-sidebar-nav ul.side-nav{
+#left-sidebar-nav ul.side-nav {
 	top: 64px;
 }
 
-@media only screen and (max-width : 992px) {
-      #main-content, footer {
-        padding-left: 0;
-      }
-    }
+@media only screen and (max-width: 992px) {
+	#main-content,
+	footer {
+		padding-left: 0;
+	}
+}
 
+aside#left-sidebar-nav {
+	position: fixed;
+	width: 100px;
+	left: 180px;
+	z-index: 999;
+	height: auto;
+}

@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
+	<!-- <title>STD App</title> -->
 	<title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">STD App</title>
 	<!-- meta -->
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<!--Let browser know website is optimized for mobile-->
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
 	<!-- css -->
 	<!--Import Google Icon Font-->
-<!-- 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" /> -->
-	<link href="../../static/css/icon.css" th:href="@{/css/icon.css}" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+	<!-- <link href="../../static/css/icon.css" th:href="@{/css/icon.css}" rel="stylesheet" /> -->
 	<!--Import materialize.css-->
 	<link type="text/css" rel="stylesheet" href="../../static/css/materialize.css" th:href="@{/css/materialize.css}" media="screen,projection" />
 	<link type="text/css" rel="stylesheet" href="../../static/css/style.css" th:href="@{/css/style.css}" media="screen,projection" />
@@ -24,11 +24,12 @@
 	<footer layout:fragment="footer-content"></footer>
 	<!--  Scripts-->
 	<!--Import jQuery before materialize.js-->
-		<!-- <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
-	<script type="text/javascript" src="../../static/js/jquery-1.12.2.min.js" th:src="@{/js/jquery-1.12.2.min.js}"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<!-- <script type="text/javascript" src="../../static/js/jquery-1.12.2.min.js" th:src="@{/js/jquery-1.12.2.min.js}"></script> -->
 	<script type="text/javascript" src="../../static/js/materialize.min.js" th:src="@{/js/materialize.js}"></script>
 	<script type="text/javascript" src="../../static/js/init.js" th:src="@{/js/init.js}"></script>
 	<script type="text/javascript" src="../../static/js/script.js" th:src="@{/js/script.js}"></script>
+	<script type="text/javascript" src="../../static/js/perfect-scrollbar.jquery.js" th:src="@{/js/perfect-scrollbar.jquery.js}"></script>
 </body>
 
 </html>

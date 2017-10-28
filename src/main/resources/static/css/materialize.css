@@ -3396,12 +3396,12 @@ small {
   padding: 24px;
   margin: 0.5rem 0 1rem 0;
   border-radius: 2px;
-  background-color: #fff; }
+  background-color: #424242; }
 
 .card {
   position: relative;
   margin: 0.5rem 0 1rem 0;
-  background-color: #fff;
+  background-color: #424242;
   transition: box-shadow .25s;
   border-radius: 2px; }
   .card .card-title {
@@ -3468,7 +3468,7 @@ small {
       bottom: 0;
       width: 100%; }
     .card .card-image .card-title {
-      color: #fff;
+      color: #424242;
       position: absolute;
       bottom: 0;
       left: 0;
@@ -3503,7 +3503,7 @@ small {
   .card .card-reveal {
     padding: 24px;
     position: absolute;
-    background-color: #fff;
+    background-color: #424242;
     width: 100%;
     overflow-y: auto;
     left: 0;
@@ -5178,7 +5178,6 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 
 input[type=range] {
   /* fix for FF unable to apply focus style bug  */
-  border: 1px solid white;
   /*required for proper track sizing in FF*/ }
 
 input[type=range]::-moz-range-track {
@@ -5255,7 +5254,7 @@ input[type=range]:focus::-ms-fill-upper {
 
 .side-nav {
   position: fixed;
-  width: 260px;
+  width: 240px;
   left: 0;
   top: 0;
   margin: 0;

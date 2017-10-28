@@ -4,7 +4,15 @@
 <body>
 	<section layout:fragment="section-content">
 		<div class="container">
-			<h1>Solicitantes</h1>
+			<h3 th:text="#{claimant.list}" />
+			<div class="row">
+				<div class="input-field col s3">
+					<select th:with="rowList = ${new int[]{ 10, 20, 30, 50, 100}}">
+						<option th:each="row : ${rowList}" th:text="${row}" />
+					</select>
+					<label>Filas</label>
+				</div>
+			</div>
 			<table class="highlight responsive-table">
 				<thead>
 					<tr>
@@ -38,17 +46,16 @@
 					</tr>
 				</tbody>
 			</table>
-			<ul class="pagination">
-				<li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-				<li class="active"><a href="#!">1</a></li>
-				<li class="waves-effect"><a href="#!">2</a></li>
-				<li class="waves-effect"><a href="#!">3</a></li>
-				<li class="waves-effect"><a href="#!">4</a></li>
-				<li class="waves-effect"><a href="#!">5</a></li>
-				<li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-			</ul>
+			<div class="row">
+				<div class="col s12">
+					<ul class="pagination" th:with="pageList=${#numbers.sequence(1,__${pages}__)}">
+						<li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+						<li th:each="page, stat : ${pageList}" th:class="${stat.first}? 'active' : 'waves-effect'"><a th:href="@{/claimants(page=${page},size='10')}" th:text="${page}" /></li>
+						<li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</section>
 </body>
-
 </html>

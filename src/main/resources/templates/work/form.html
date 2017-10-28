@@ -4,26 +4,25 @@
 <body>
 	<section layout:fragment="section-content">
 		<div class="container">
-			<h3 th:text="${status==true? '__#{work.form.create}__' : '__#{work.form.update}__'}">Registrar A�o de Trabajo
-			</h3>
-				<div class="row">
-				<form method="post" th:action="${status==true}? @{/work/form} : @{/work/__${work.id}__}" th:object="${work}" class="col s12">
+			<h3 th:text="${status? '__#{work.form.create}__' : '__#{work.form.update}__'}" />
+			<div class="row">
+				<form method="post" th:action="${status}? @{/work/form} : @{/work/__${work.id}__}" th:object="${work}" class="col s12">
 					<div class="row">
 						<div class="input-field col s12">
 							<select th:field="*{company}">
-								<option value="" th:if="${status}" th:disabled="${status}" th:selected="${status}" th:text="#{work.form.select.company}"/> 
-								<option th:each="company : ${companyList}" th:text="${company.nombre}" th:value="${{company}}"/>
+								<option value="" th:if="${status}" th:disabled="${status}" th:selected="${status}" th:text="#{work.form.select.company}" />
+								<option th:each="company : ${companyList}" th:text="${company.nombre}" th:value="${{company}}" />
 							</select>
-							<label>Compañia</label><span th:if="${#fields.hasErrors('company')}" th:errors="*{company}" class="error-class" />
+							<label th:text="#{work.company}" /><span th:if="${#fields.hasErrors('company')}" th:errors="*{company}" class="error-class" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="input-field col s12">
 							<select th:field="*{tupa}">
-								<option value="" th:if="${status}" th:disabled="${status}" th:selected="${status}" th:text="#{work.form.select.tupa}"/> 
+								<option value="" th:if="${status}" th:disabled="${status}" th:selected="${status}" th:text="#{work.form.select.tupa}" />
 								<option th:each="tupa : ${tupaList}" th:text="${tupa.nombre}" th:value="${{tupa}}" />
 							</select>
-							<label>Tupa</label><span th:if="${#fields.hasErrors('tupa')}" th:errors="*{tupa}" class="error-class" />
+							<label th:text="#{work.tupa}" /><span th:if="${#fields.hasErrors('tupa')}" th:errors="*{tupa}" class="error-class" />
 						</div>
 					</div>
 					<div class="row">
@@ -35,7 +34,7 @@
 					</div>
 					<div class="row">
 						<div class="input-field col s6">
-							<button class="btn waves-effect waves-light" type="submit" name="action">Guardar<i class="material-icons right" th:text="#{icons.guardar}" /></button>
+							<button class="btn waves-effect waves-light" type="submit" name="action">[[${op.guardar}]]<i class="material-icons right" th:text="#{icons.guardar}" /></button>
 						</div>
 						<div class="input-field col s6">
 							<button class="btn waves-effect waves-light" type="reset" name="action">Limpiar<i class="material-icons right" th:text="#{icons.limpiar}" /></button>
@@ -46,4 +45,5 @@
 		</div>
 	</section>
 </body>
+
 </html>
