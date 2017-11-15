@@ -24,15 +24,73 @@ main {
 #left-sidebar-nav ul.side-nav {
   top: 64px; }
 
-@media only screen and (max-width: 992px) {
-  #main-content,
-  footer {
-    padding-left: 0; } }
 aside#left-sidebar-nav {
   position: fixed;
   width: 100px;
   left: 180px;
   z-index: 999;
   height: auto; }
+
+.nopadding {
+  padding: 0; }
+
+.card .material-table .table-header {
+  border-bottom: 2px solid rgba(160, 160, 160, 0.2);
+  padding: .5em 1em; }
+  .card .material-table .table-header .row {
+    margin-bottom: 0; }
+  .card .material-table .table-header span {
+    font-weight: 500; }
+.card .material-table .table-content {
+  padding: 0; }
+  .card .material-table .table-content table td,
+  .card .material-table .table-content table th {
+    padding: 10px 12px; }
+    .card .material-table .table-content table td:first-child,
+    .card .material-table .table-content table th:first-child {
+      padding-left: 15px; }
+    .card .material-table .table-content table td:last-child,
+    .card .material-table .table-content table th:last-child {
+      padding-right: 15px; }
+  .card .material-table .table-content table tr {
+    border-bottom: 1px solid rgba(160, 160, 160, 0.2); }
+  .card .material-table .table-content table thead th {
+    font-weight: 500; }
+  .card .material-table .table-content table tbody td {
+    font-size: 10pt;
+    font-weight: 300; }
+.card .material-table .table-footer {
+  border-top: 2px solid rgba(160, 160, 160, 0.2);
+  padding: 0 .75em; }
+  .card .material-table .table-footer .row {
+    margin-bottom: none; }
+    .card .material-table .table-footer .row .valign-wrapper {
+      height: 60px; }
+      .card .material-table .table-footer .row .valign-wrapper label {
+        padding: 0 0 0 1em; }
+  .card .material-table .table-footer .input-field {
+    margin-top: 0;
+    height: 60px;
+    display: flex;
+    align-items: center; }
+  .card .material-table .table-footer input.select-dropdown {
+    border-bottom: none;
+    margin-bottom: 0; }
+  .card .material-table .table-footer ul.pagination a {
+    color: #fff;
+    font-size: 8pt;
+    padding: 0 7px; }
+    .card .material-table .table-footer ul.pagination a i {
+      font-size: 15pt;
+      vertical-align: middle; }
+
+@media only screen and (max-width: 992px) {
+  #main-content,
+  footer {
+    padding-left: 0; }
+
+  table.bordered.responsive-table thead,
+  table.bordered.responsive-table tbody tr {
+    border-right: 1px solid rgba(160, 160, 160, 0.2); } }
 
 /*# sourceMappingURL=style.css.map */

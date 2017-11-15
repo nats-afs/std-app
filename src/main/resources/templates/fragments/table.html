@@ -1,0 +1,53 @@
+<table class="highlight bordered responsive-table" >
+	<thead th:fragment="tableHeader (headers)">
+		<tr>
+			<th th:each="header : ${headers}" th:text="${header}" />
+		</tr>
+	</thead>
+	<tbody>
+	 	<tr th:fragment="tableBody(content,values,path)" th:each="row : ${content}">
+			<th:block th:each="value, stat : ${values}">
+				<td th:text="${row.__${value}__}" />
+				<td th:if="${stat.last}" th:with="id=${row.__${values[0]}__}">
+					<a th:href="@{/__${path}__/__${id}__}"> <i class="material-icons" th:text="#{icons.editar}" /></a>
+					<a th:href="@{/__${path}__/delete/__${id}__}"> <i class="material-icons" th:text="#{icons.borrar}" /></a>
+				</td>	
+			</th:block> 
+		</tr>
+	</tbody>
+</table>
+<!-- th:fragment="table" th:fragment="table(content,values,url)"  -->
+<!-- POSSIBLE OUTPUT FOR THIS FRAGMENT -->
+<!-- 			<table class="highlight responsive-table">
+				<thead>
+					<tr>
+						<th th:text="#{claimant.id}" />
+						<th th:text="#{claimant.nombres}" />
+						<th th:text="#{claimant.apellidos}" />
+						<th th:text="#{claimant.direccion}" />
+						<th th:text="#{claimant.telefono}" />
+						<th th:text="#{claimant.email}" />
+						<th th:text="#{claimant.doc}" />
+						<th th:text="#{claimant.nro}" />
+						<th th:text="#{claimant.acciones}" />
+					</tr>
+				</thead>
+				<tbody th:with="claimantList=${claimantsPage.getContent()}">
+					<tr th:each="claimant : ${claimantList}" th:object="${claimant}">
+						<td th:text="*{id}" />
+						<td th:text="*{nombres}" />
+						<td th:text="*{apellidos}" />
+						<td th:text="*{direccion} " />
+						<td th:text="*{telefono}" />
+						<td th:text="*{email}" />
+						<td th:text="*{doc}" />
+						<td th:text="*{nroDoc}" />
+						<td th:with="id=*{id}">
+							<a th:href="@{/claimants/__${id}__}"> <i class="material-icons" th:text="#{icons.editar}" />
+							</a>
+							<a th:href="@{/claimants/delete/__${id}__}"> <i class="material-icons" th:text="#{icons.borrar}" />
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table> -->

@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -74,33 +75,28 @@ public class ClaimantController {
 		return "redirect:/claimants";
 	}
 
-	// list of claimants
-	// @GetMapping
-	// private String showClaimants(Model model) {
-	// log.info("List of claimants");
-	// List<Claimant> claimants = claimantRepository.findAll();
-	// model.addAttribute("claimantList", claimants);
-	// log.info(String.format("Total of claimants %d", claimants.size()));
-	// return "claimant/list";
-	// }
-
 	@GetMapping
-	private String showClaimantsByPage(Model model, Pageable pageable) {
+	private String showClaimantsByPage(Model model, @PageableDefault Pageable pageable) {
 		log.info("List of claimants");
-//		Page<Claimant> claimants ;
-//		
-//		if (pageable.isPresent()) {
-//			claimants = claimantRepository.findAll(pageable.get());
-//		}else {
-//			claimants = claimantRepository.findAll(new PageRequest(0, 10));
-//		}
-//		
-		Page<Claimant> claimants = claimantRepository.findAll(!(pageable == null)? pageable: new PageRequest(0, 10));
-		model.addAttribute("pages", claimants.getTotalPages());
-		model.addAttribute("claimantList", claimants.getContent());
-		log.info(String.format("Total of claimants by page %d", claimants.getContent().size()));
+
+		Page<Claimant> claimants = claimantRepository.findAll(pageable);
+		model.addAttribute("claimantsPage", claimants);
+		model.addAttribute("pageNumber", claimants.getNumber());
+		model.addAttribute("pageSize", claimants.getSize());
+		log.info(String.format("Total of claimants in page %d: %d",claimants.getNumber(), claimants.getContent().size()));
 		return "claimant/list";
 	}
+	
+	@GetMapping("/ajax")
+	public String ajaxBrands(Model model,@RequestParam int size) {
+		log.info("Ajax");
+		Page<Claimant> claimants= claimantRepository.findAll(new PageRequest(0, size));
+		model.addAttribute("claimantsPage", claimants);
+		model.addAttribute("pageNumber", claimants.getNumber());
+		model.addAttribute("pageSize", claimants.getSize());
+		return "claimant/list :: ajaxTable";
+	}
+	
 
 	// show form
 	@GetMapping("/form")

@@ -3,7 +3,6 @@ footer {
 	padding-left: 240px;
 }
 
-
 body {
 	display: flex;
 	min-height: 100vh;
@@ -32,12 +31,6 @@ main {
 	top: 64px;
 }
 
-@media only screen and (max-width: 992px) {
-	#main-content,
-	footer {
-		padding-left: 0;
-	}
-}
 
 aside#left-sidebar-nav {
 	position: fixed;
@@ -45,4 +38,100 @@ aside#left-sidebar-nav {
 	left: 180px;
 	z-index: 999;
 	height: auto;
+}
+
+.nopadding {
+	padding: 0;
+}
+
+// TABLE By nats
+.card {
+	.material-table {
+		.table-header {
+			border-bottom: 2px solid rgba(160, 160, 160, 0.2);
+			padding: .5em 1em;
+			.row {
+				margin-bottom: 0;
+			}
+			span {
+				font-weight: 500;
+			}
+		}
+		.table-content {
+			padding: 0;
+			table {
+				td,
+				th {
+					padding: 10px 12px;
+					&:first-child {
+						padding-left: 15px;
+					}
+					&:last-child {
+						padding-right: 15px;
+					}
+				}
+				tr {
+					border-bottom: 1px solid rgba(160, 160, 160, 0.2);
+				}
+				thead {
+					th {
+						font-weight: 500;
+					}
+				}
+				tbody {
+					td {
+						font-size: 10pt;
+						font-weight: 300;
+					}
+				}
+			}
+		}
+		.table-footer {
+			border-top: 2px solid rgba(160, 160, 160, 0.2);
+			padding: 0 .75em;
+			.row {
+				margin-bottom: none;
+				.valign-wrapper {
+					height: 60px;
+					label {
+						padding: 0 0 0 1em;
+					}
+				}
+			}
+			.input-field {
+				margin-top: 0;
+				height: 60px;
+				display: flex;
+				align-items: center;
+			}
+			input.select-dropdown {
+				border-bottom: none;
+				margin-bottom: 0;
+			}
+			ul.pagination {
+				a {
+					color: #fff;
+					font-size: 8pt;
+					padding:  0 7px;
+					i {
+						font-size: 15pt;
+						vertical-align: middle;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 992px) {
+	#main-content,
+	footer {
+		padding-left: 0;
+	}
+	table.bordered.responsive-table {
+		thead,
+		tbody tr {
+			border-right: 1px solid rgba(160, 160, 160, 0.2);
+		}
+	}
 }
