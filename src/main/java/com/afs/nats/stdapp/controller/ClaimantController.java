@@ -85,17 +85,24 @@ public class ClaimantController {
 		model.addAttribute("pageSize", claimants.getSize());
 		log.info(String.format("Total of claimants in page %d: %d",claimants.getNumber(), claimants.getContent().size()));
 		return "claimant/list";
+		// return "claimant/list";
 	}
 	
-	@GetMapping("/ajax")
-	public String ajaxBrands(Model model,@RequestParam int size) {
-		log.info("Ajax");
-		Page<Claimant> claimants= claimantRepository.findAll(new PageRequest(0, size));
-		model.addAttribute("claimantsPage", claimants);
-		model.addAttribute("pageNumber", claimants.getNumber());
-		model.addAttribute("pageSize", claimants.getSize());
-		return "claimant/list :: ajaxTable";
-	}
+	// @GetMapping("/ajaxTable")
+	// public String ajaxBrands(Model model,@RequestParam int size) {
+	// 	log.info("Ajax");
+	// 	Page<Claimant> claimants= claimantRepository.findAll(new PageRequest(0, size));
+	// 	model.addAttribute("claimantsPage", claimants);
+	// 	return "claimant/list :: ajaxTable";
+	// }
+
+	// @GetMapping("/ajaxPagination")
+	// public String ajaxBrands(Model model,@RequestParam int size) {
+	// 	log.info("Ajax");
+	// 	Page<Claimant> claimants= claimantRepository.findAll(new PageRequest(0, size));
+	// 	model.addAttribute("claimantsPage", claimants);
+	// 	return "claimant/list :: ajaxPagination";
+	// }
 	
 
 	// show form

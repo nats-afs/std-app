@@ -36,18 +36,26 @@ $(document).ready(function() {
 	// });
 	// FIN PAGINATION ACTIVE LINK
 
-	// changePageAndSize();
+	changePageAndSize();
 
 	$(function() {
 		$('#pageSizeSelect').on('change', function() {
-			$("tbody").load('claimants/ajax?size='+ this.value);
+			$("section").load('claimants');
 		});
 	});
+
+	// $(function() {
+	// 	$('#pageSizeSelect').on('change', function() {
+	// 		$("tbody").load('claimants/ajax?size='+ this.value);
+	// 		$("ul.pagination").load('claimants/ajax?size='+ this.value);
+	// 	});
+	// });
  
 });
 
-function changePageAndSize() {
-	$('#pageSizeSelect').change(function(evt) {
-		window.location.replace("/claimants?size=" + this.value + "&page=0");
-	});
-}
+	function changePageAndSize() {
+		$('#pageSizeSelect').change(function(evt) {
+			window.location.replace("/claimants?size=" + this.value + "&page=0");
+		});
+	}
+

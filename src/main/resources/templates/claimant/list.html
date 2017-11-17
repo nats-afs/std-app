@@ -46,7 +46,7 @@
 													<a th:attr="href=${previous}? @{/claimants(page=${pageNumber - 1},size=${pageSize})}"><i class="material-icons">chevron_left</i></a>
 												</li>
 											</th:block>
-											<li th:each="page : ${pageList}" th:class="${pageNumber == page}? 'active' : 'waves-effect'"><a th:href="@{/claimants(page=${page},size=__${pageSize}__)}" th:text="${page + 1}" /></li>
+											<li th:fragment="ajaxPagination" th:each="page : ${pageList}" th:class="${pageNumber == page}? 'active' : 'waves-effect'"><a th:href="@{/claimants(page=${page},size=__${pageSize}__)}" th:text="${page + 1}" /></li>
 											<th:block th:with="next=${claimantsPage.hasNext()}">
 												<li th:class="${next}? 'waves-effect' : 'disabled'">
 													<a th:attr="href=${next}? @{/claimants(page=${pageNumber + 1},size=__${pageSize}__)}"><i class="material-icons">chevron_right</i></a>

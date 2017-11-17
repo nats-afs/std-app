@@ -23,7 +23,7 @@ public class StdAppApplication {
 	public CommandLineRunner setData(ClaimantRepository repository) {
 		return args -> {
 			List<Claimant> claimantList = new ArrayList<Claimant>();
-			for (int i = 1; i < 25; i++) {
+			for (int i = 1; i < 100; i++) {
 				claimantList
 				.add(new Claimant(
 						String.format("Nombres %d",i), 
