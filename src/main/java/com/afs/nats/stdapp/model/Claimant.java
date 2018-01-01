@@ -17,7 +17,6 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
-
 @Entity
 @Data
 @NoArgsConstructor
