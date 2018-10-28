@@ -3,14 +3,16 @@ package com.afs.nats.stdapp.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-
-import org.hibernate.validator.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,8 +31,15 @@ public class Process {
 	private @NonNull String nombre;
 	private @NonNull String descripcion;
 	@ManyToOne
-	@NotBlank
+	@NotNull
 	private @NonNull Tupa tupa;
-	@ManyToMany(mappedBy= "processes")
-	Set<Requisite> requisites = new HashSet<Requisite>();
+	@NotNull
+	@ManyToMany(cascade = {CascadeType.ALL})
+	@JoinTable(
+			name= "Process_Requisite",
+			joinColumns= {@JoinColumn(name="IdProcess")},
+			inverseJoinColumns = {@JoinColumn(name = "IdRequisite")}
+			)
+	private @NonNull Set<Requisite> requisites = new HashSet<Requisite>();
+	
 }

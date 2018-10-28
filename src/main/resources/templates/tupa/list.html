@@ -12,7 +12,7 @@
 						<th th:text="#{tupa.anio}" />
 						<th th:text="#{tupa.nombre}" />
 						<th th:text="#{tupa.resolucion}" />
-						<th th:text="#{tupa.procesos}" />
+						<!-- <th th:text="#{tupa.procesos}" /> -->
 					</tr>
 				</thead>
 				<tbody>
@@ -21,7 +21,7 @@
 						<td th:text="*{anio}" />
 						<td th:text="*{nombre}" />
 						<td th:text="*{resolucion}" />
-						<td th:text="*{procedures} " />
+						<!-- <td th:text="*{procedures} " /> -->
 						<td th:with="id=*{id}">
 							<a th:href="@{/tupa/__${id}__}"> <i class="material-icons" th:text="#{icons.editar}" />
 							</a>

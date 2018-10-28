@@ -8,10 +8,11 @@
 //  2. Badges
 //  3. Buttons
 //  4. Cards
-//  5. Collapsible
-//  6. Chips
-//  7. Date Picker
-//  8. Dropdown
+//  5. Carousel
+//  6. Collapsible
+//  7. Chips
+//  8. Date + Time Picker
+//  9. Dropdown
 //  10. Forms
 //  11. Global
 //  12. Grid
@@ -33,35 +34,11 @@
 // 1. Colors
 // ==========================================================================
 
-//Insertado por Nats
-//Colores de tema personalizado
-$nats-status-bar: #000;
-$nats-app-bar: #212121;
-$nats-background: #303030;
-$nats-cards-modals: #424242;
-$nats-text-color: color("grey","darken-1");
-
-$nats-secondary-color: color("light-blue","darken-3");
-
-
-//colores por defecto
-//$primary-color: color("materialize-red", "lighten-2") !default;
-//$primary-color-light: lighten($primary-color, 15%) !default;
-//$primary-color-dark: darken($primary-color, 15%) !default;
-
-//nuevos colores
-$primary-color: $nats-app-bar !default;
+$primary-color: color("materialize-red", "lighten-2") !default;
 $primary-color-light: lighten($primary-color, 15%) !default;
 $primary-color-dark: darken($primary-color, 15%) !default;
 
-//valores por defecto
-//$secondary-color: color("teal", "lighten-1") !default;
-//$success-color: color("green", "base") !default;
-//$error-color: color("red", "base") !default;
-//$link-color: color("light-blue", "darken-1") !default;
-
-//nuevos valores
-$secondary-color: $nats-secondary-color !default;
+$secondary-color: color("teal", "lighten-1") !default;
 $success-color: color("green", "base") !default;
 $error-color: color("red", "base") !default;
 $link-color: color("light-blue", "darken-1") !default;
@@ -80,10 +57,10 @@ $badge-height: 22px !default;
 // Shared styles
 $button-border: none !default;
 $button-background-focus: lighten($secondary-color, 4%) !default;
-$button-font-size: 1rem !default;
+$button-font-size: 14px !default;
 $button-icon-font-size: 1.3rem !default;
 $button-height: 36px !default;
-$button-padding: 0 2rem !default;
+$button-padding: 0 16px !default;
 $button-radius: 2px !default;
 
 // Disabled styles
@@ -96,8 +73,16 @@ $button-raised-background-hover: lighten($button-raised-background, 5%) !default
 $button-raised-color: #fff !default;
 
 // Large buttons
+$button-large-font-size: 15px !default;
 $button-large-icon-font-size: 1.6rem !default;
 $button-large-height: $button-height * 1.5 !default;
+$button-floating-large-size: 56px !default;
+
+// Small buttons
+$button-small-font-size: 13px !default;
+$button-small-icon-font-size: 1.2rem !default;
+$button-small-height: $button-height * .9 !default;
+$button-floating-small-size: $button-height * .9 !default;
 
 // Flat buttons
 $button-flat-color: #343434 !default;
@@ -108,7 +93,6 @@ $button-floating-background: $secondary-color !default;
 $button-floating-background-hover: $button-floating-background !default;
 $button-floating-color: #fff !default;
 $button-floating-size: 40px !default;
-$button-floating-large-size: 56px !default;
 $button-floating-radius: 50% !default;
 
 
@@ -116,12 +100,20 @@ $button-floating-radius: 50% !default;
 // ==========================================================================
 
 $card-padding: 24px !default;
-$card-bg-color: $nats-cards-modals;
+$card-bg-color: #fff !default;
 $card-link-color: color("orange", "accent-2") !default;
 $card-link-color-light: lighten($card-link-color, 20%) !default;
 
 
-// 5. Collapsible
+// 5. Carousel
+// ==========================================================================
+
+$carousel-height: 400px !default;
+$carousel-item-height: $carousel-height / 2 !default;
+$carousel-item-width: $carousel-item-height !default;
+
+
+// 6. Collapsible
 // ==========================================================================
 
 $collapsible-height: 3rem !default;
@@ -130,7 +122,7 @@ $collapsible-header-color: #fff !default;
 $collapsible-border-color: #ddd !default;
 
 
-// 6. Chips
+// 7. Chips
 // ==========================================================================
 
 $chip-bg-color: #e4e4e4 !default;
@@ -139,38 +131,32 @@ $chip-selected-color: #26a69a !default;
 $chip-margin: 5px !default;
 
 
-// 7. Date Picker
+// 8. Date + Time Picker
 // ==========================================================================
 
+$datepicker-display-font-size: 2.8rem;
+$datepicker-calendar-header-color: #999;
+$datepicker-weekday-color: rgba(0, 0, 0, .87) !default;
 $datepicker-weekday-bg: darken($secondary-color, 7%) !default;
 $datepicker-date-bg: $secondary-color !default;
-$datepicker-year: rgba(255, 255, 255, .4) !default;
+$datepicker-year: rgba(255, 255, 255, .7) !default;
 $datepicker-focus: rgba(0,0,0, .05) !default;
 $datepicker-selected: $secondary-color !default;
 $datepicker-selected-outfocus: desaturate(lighten($secondary-color, 35%), 15%) !default;
+$datepicker-day-focus: transparentize(desaturate($secondary-color, 5%), .75) !default;
+$datepicker-disabled-day-color: rgba(0, 0, 0, .3) !default;
+
+$timepicker-clock-color: rgba(0, 0, 0, .87) !default;
+$timepicker-clock-plate-bg: #eee !default;
 
 
-// 8. Dropdown
+// 9. Dropdown
 // ==========================================================================
 
-//valores por defecto
-//$dropdown-bg-color: #fff !default;
-//$dropdown-hover-bg-color: #eee !default;
-//$dropdown-color: $secondary-color !default;
-//$dropdown-item-height: 50px !default;
-
-//nuevos valores
-$dropdown-bg-color: $nats-app-bar !default;
-$dropdown-hover-bg-color: lighten($dropdown-bg-color,15%) !default;
-$dropdown-color: $nats-text-color !default;
+$dropdown-bg-color: #fff !default;
+$dropdown-hover-bg-color: #eee !default;
+$dropdown-color: $secondary-color !default;
 $dropdown-item-height: 50px !default;
-$dropdown-font-size: 0.9rem;
-
-
-// 9. Fonts
-// ==========================================================================
-
-$roboto-font-path: "../fonts/roboto/" !default;
 
 
 // 10. Forms
@@ -184,16 +170,16 @@ $input-background: #fff !default;
 $input-error-color: $error-color !default;
 $input-success-color: $success-color !default;
 $input-focus-color: $secondary-color !default;
-$input-font-size: 1rem !default;
-$input-margin-bottom: 20px;
+$input-font-size: 16px !default;
+$input-margin-bottom: 8px;
 $input-margin: 0 0 $input-margin-bottom 0 !default;
 $input-padding: 0 !default;
-$input-transition: all .3s !default;
 $label-font-size: .8rem !default;
-$input-disabled-color: rgba(0,0,0, .26) !default;
-$input-disabled-solid-color: #BDBDBD !default;
+$input-disabled-color: rgba(0,0,0, .42) !default;
+$input-disabled-solid-color: #949494 !default;
 $input-disabled-border: 1px dotted $input-disabled-color !default;
 $input-invalid-border: 1px solid $input-error-color !default;
+$input-icon-size: 2rem;
 $placeholder-text-color: lighten($input-border-color, 20%) !default;
 
 // Radio Buttons
@@ -210,17 +196,19 @@ $track-height: 3px !default;
 $select-border: 1px solid #f2f2f2 !default;
 $select-background: rgba(255, 255, 255, 0.90) !default;
 $select-focus: 1px solid lighten($secondary-color, 47%) !default;
+$select-option-hover: rgba(0,0,0,.08) !default;
+$select-option-focus: rgba(0,0,0,.08) !default;
+$select-option-selected: rgba(0,0,0,.03) !default;
 $select-padding: 5px !default;
 $select-radius: 2px !default;
-//$select-disabled-color: rgba(0,0,0,.3) !default;
-$select-disabled-color: lighten($nats-text-color, 15%) !default;
+$select-disabled-color: rgba(0,0,0,.3) !default;
 
 // Switches
 $switch-bg-color: $secondary-color !default;
-$switch-checked-lever-bg: desaturate(lighten($secondary-color, 25%), 25%) !default;
+$switch-checked-lever-bg: desaturate(lighten($switch-bg-color, 25%), 25%) !default;
 $switch-unchecked-bg: #F1F1F1 !default;
-$switch-unchecked-lever-bg: #818181 !default;
-$switch-radius: 15px !default; 
+$switch-unchecked-lever-bg: rgba(0,0,0,.38) !default;
+$switch-radius: 15px !default;
 
 
 // 11. Global
@@ -259,7 +247,7 @@ $navbar-line-height: $navbar-height !default;
 $navbar-height-mobile: 56px !default;
 $navbar-line-height-mobile: $navbar-height-mobile !default;
 $navbar-font-size: 1rem !default;
-$navbar-font-color: $nats-text-color !default;
+$navbar-font-color: #fff !default;
 $navbar-brand-font-size: 2.1rem !default;
 
 // 14. Side Navigation
@@ -267,11 +255,9 @@ $navbar-brand-font-size: 2.1rem !default;
 
 $sidenav-font-size: 14px !default;
 $sidenav-font-color: rgba(0,0,0,.87) !default;
-$sidenav-font-weight: 400;
 $sidenav-bg-color: #fff !default;
-$sidenav-padding: 15px !default;
+$sidenav-padding: 16px !default;
 $sidenav-item-height: 48px !default;
-$sidenav-width: 240px !default;
 $sidenav-line-height: $sidenav-item-height !default;
 
 
@@ -300,13 +286,8 @@ $tabs-bg-color: #fff !default;
 // 18. Tables
 // ==========================================================================
 
-//valores por defecto
-//$table-border-color: #d0d0d0 !default;
-//$table-striped-color: #f2f2f2 !default;
-
-//nuevos valores
-$table-border-color: #d0d0d0 !default;
-$table-striped-color: $nats-app-bar !default;
+$table-border-color: rgba(0,0,0,.12) !default;
+$table-striped-color: rgba(242, 242, 242, 0.5) !default;
 
 
 // 19. Toasts
@@ -315,11 +296,13 @@ $table-striped-color: $nats-app-bar !default;
 $toast-height: 48px !default;
 $toast-color: #323232 !default;
 $toast-text-color: #fff !default;
+$toast-action-color: #eeff41;
 
 
 // 20. Typography
 // ==========================================================================
 
+$font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif !default;
 $off-black: rgba(0, 0, 0, 0.87) !default;
 // Header Styles
 $h1-fontsize: 4.2rem !default;
@@ -327,13 +310,16 @@ $h2-fontsize: 3.56rem !default;
 $h3-fontsize: 2.92rem !default;
 $h4-fontsize: 2.28rem !default;
 $h5-fontsize: 1.64rem !default;
-$h6-fontsize: 1rem !default;
+$h6-fontsize: 1.15rem !default;
 
 
 // 21. Footer
 // ==========================================================================
 
+$footer-font-color: #fff !default;
 $footer-bg-color: $primary-color !default;
+$footer-copyright-font-color: rgba(255,255,255,.8) !default;
+$footer-copyright-bg-color: rgba(51,51,51,.08) !default;
 
 
 // 22. Flow Text
@@ -347,23 +333,14 @@ $interval-size: $range / $intervals !default;
 // 23. Collections
 // ==========================================================================
 
-//valores por defecto
-//$collection-border-color: #e0e0e0 !default;
-//$collection-bg-color: #fff !default;
-//$collection-active-bg-color: $secondary-color !default;
-//$collection-active-color: lighten($secondary-color, 55%) !default;
-//$collection-hover-bg-color: #ddd !default;
-//$collection-link-color: $secondary-color !default;
-//$collection-line-height: 1.5rem !default;
-
-//nuevos valores
-$collection-border-color: $nats-status-bar !default;
-$collection-bg-color: $nats-cards-modals !default;
+$collection-border-color: #e0e0e0 !default;
+$collection-bg-color: #fff !default;
 $collection-active-bg-color: $secondary-color !default;
 $collection-active-color: lighten($secondary-color, 55%) !default;
 $collection-hover-bg-color: #ddd !default;
 $collection-link-color: $secondary-color !default;
 $collection-line-height: 1.5rem !default;
+
 
 // 24. Progress Bar
 // ==========================================================================

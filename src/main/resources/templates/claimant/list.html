@@ -19,60 +19,62 @@
 									</div>
 								</div>
 							</div>
-							<div class="card-content table-content">
-								<table class="highlight bordered responsive-table">
-									<thead th:include="fragments/table :: tableHeader(${#messages.arrayMsg({'claimant.id','claimant.nombres','claimant.apellidos','claimant.direccion','claimant.telefono','claimant.email','claimant.doc','claimant.nro','claimant.acciones'})})" />
-									<tbody>
-										<tr th:fragment="ajaxTable" th:replace="fragments/table :: tableBody (${claimantsPage.getContent()},${new String[]{'id','nombres','apellidos','direccion','telefono','email','doc','nroDoc'}},'claimants')"/>
-									</tbody>
-							</table>
-							</div>
-							<div class="table-footer">
-								<div class="row">
-										<div class="col s2">
-											<div class="valign-wrapper">
-												<label>Filas por pagina:</label>
+							<th:block th:if="${claimantsPage.getTotalPages()} > 0">
+								<div class="card-content table-content">
+									<table class="highlight bordered responsive-table">
+										<thead th:include="fragments/table :: tableHeader(${#messages.arrayMsg({'claimant.id','claimant.nombres','claimant.apellidos','claimant.direccion','claimant.telefono','claimant.email','claimant.doc','claimant.nro','claimant.acciones'})})" />
+										<tbody>
+											<tr th:replace="fragments/table :: tableBody (${claimantsPage.getContent()},${new String[]{'id','nombres','apellidos','direccion','telefono','email','doc','nroDoc'}},'claimants')" />
+										</tbody>
+									</table>
+									<div class="table-footer">
+										<div class="row">
+											<div class="col s2">
+												<div class="valign-wrapper">
+													<label>Filas por pagina:</label>
+												</div>
+											</div>
+											<div class="input-field col s1">
+												<select th:with="sizeList = ${new int[]{ 10, 20, 30, 50, 100}}" id="pageSizeSelect">
+													<option th:each="size : ${sizeList}" th:value="${size}" th:text="${size}" th:selected="${size} == ${pageSize}" />
+												</select>
+											</div>
+											<div class="col s8">
+												<ul class="pagination" th:with="pageList=${#numbers.sequence(0,__${claimantsPage.getTotalPages() - 1}__)}">
+													<th:block th:with="previous=${claimantsPage.hasPrevious()}">
+														<li th:class="${previous}? 'waves-effect' : 'disabled'">
+															<a th:attr="href=${previous}? @{/claimants(page=${pageNumber - 1},size=${pageSize})}"><i class="material-icons">chevron_left</i></a>
+														</li>
+													</th:block>
+													<li th:each="page : ${pageList}" th:class="${pageNumber == page}? 'active' : 'waves-effect'"><a th:href="@{/claimants(page=${page},size=__${pageSize}__)}" th:text="${page + 1}" /></li>
+													<th:block th:with="next=${claimantsPage.hasNext()}">
+														<li th:class="${next}? 'waves-effect' : 'disabled'">
+															<a th:attr="href=${next}? @{/claimants(page=${pageNumber + 1},size=__${pageSize}__)}"><i class="material-icons">chevron_right</i></a>
+														</li>
+													</th:block>
+												</ul>
 											</div>
 										</div>
-									<div class="input-field col s1">
-										<select th:with="sizeList = ${new int[]{ 10, 20, 30, 50, 100}}" id="pageSizeSelect">
-											<option th:each="size : ${sizeList}" th:value="${size}" th:text="${size}" th:selected="${size} == ${pageSize}" />
-										</select>
-									</div>
-									<div class="col s8">
-										<ul class="pagination" th:with="pageList=${#numbers.sequence(0,__${claimantsPage.getTotalPages() - 1}__)}">
-											<th:block th:with="previous=${claimantsPage.hasPrevious()}">
-												<li th:class="${previous}? 'waves-effect' : 'disabled'">
-													<a th:attr="href=${previous}? @{/claimants(page=${pageNumber - 1},size=${pageSize})}"><i class="material-icons">chevron_left</i></a>
-												</li>
-											</th:block>
-											<li th:fragment="ajaxPagination" th:each="page : ${pageList}" th:class="${pageNumber == page}? 'active' : 'waves-effect'"><a th:href="@{/claimants(page=${page},size=__${pageSize}__)}" th:text="${page + 1}" /></li>
-											<th:block th:with="next=${claimantsPage.hasNext()}">
-												<li th:class="${next}? 'waves-effect' : 'disabled'">
-													<a th:attr="href=${next}? @{/claimants(page=${pageNumber + 1},size=__${pageSize}__)}"><i class="material-icons">chevron_right</i></a>
-												</li>
-											</th:block>
-										</ul>
 									</div>
 								</div>
-							</div>
+							</th:block>
+							<th:block th:unless="${claimantsPage.getTotalPages()} > 0">
+								<div class="card-content table-content">
+									<table class="highlight bordered responsive-table">
+										<tbody>
+											<tr>
+												<td>Sin Resultados</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</th:block>
 						</div>
 					</div>
-					<datatable></datatable>
 				</div>
 			</div>
 		</div>
-	<script src="../../static/js/mainVue.js" th:src="@{/js/main.js}"></script>
 	</section>
-	<script th:inline="javascript">
-/*[+
-	$(function() {
-		$('#pageSizeSelect').on('change', function() {
-			$("tbody").load('/ajax/claimants', $("#pageSizeSelect").val());
-		});
-	});
-+]*/ 
-</script>
 </body>
 
 </html>

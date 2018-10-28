@@ -34,11 +34,7 @@ public class Requisite {
 	@NotNull
 	@NotBlank(message="Indique descripcion de requisito")
 	private @NonNull String descripcion;
-	@ManyToMany
-	@JoinTable(
-			name= "Process_Requisite",
-			joinColumns= {@JoinColumn(name="IdProcess")},
-			inverseJoinColumns = {@JoinColumn(name = "IdRequisite")}
-			)
-	Set<Process> processes = new HashSet<Process>();
+	@ManyToMany(mappedBy = "requisites")
+	@NotNull
+	private @NonNull Set<Process> processes = new HashSet<Process>();
 }
